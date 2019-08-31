@@ -18,7 +18,12 @@ var io = require("socket.io")(server);
 //port 
 server.listen(3000)
 
-
 app.get('/', function(req,res){
-    res.send('hello')
+    // res.send('hello')
+    res.render('home')
+})
+
+io.on("connection",function(socket){
+    console.log("new connection,id: ",socket.id);
+    
 })

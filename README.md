@@ -52,3 +52,34 @@ app.get('/', function(req,res){
 cd to project folder:
 $ node index.js
 Open browser at localhost:3000 to see 'hello' display by res.send('hello')
+
+* Connect client and server by socket.io
+- client (home.ejs) <> server (index.js)
+// home.ejs
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    ...
+    <script src="/socket.io/socket.io.js"></script>
+    <script>    
+    var socket = io("http://localhost:3000")    
+    </script>
+    ...
+
+</head>
+<body>
+    <h1>SOCKET.IO DEMO</h1>
+</body>
+</html>
+
+//index.js
+...
+app.get('/', function(req,res){
+    // res.send('hello')
+    res.render('home')
+})
+//listen from client
+io.on("connection",function(socket){
+    console.log("new connection,id: ",socket.id);
+    
+})
